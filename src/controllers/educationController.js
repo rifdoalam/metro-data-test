@@ -30,7 +30,7 @@ const showEducation = async (req, res) => {
 
 const updateEducation = async (req, res) => {
   const { id } = req.params;
-  const { employee_id, name, level, description, updated_by } = req.body;
+  const { name, level, description, updated_by } = req.body;
   try {
     const educationFind = await educationService.showEducation(id);
     if (educationFind == null) {

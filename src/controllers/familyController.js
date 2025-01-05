@@ -17,8 +17,21 @@ const showFamily = async (req, res) => {
 };
 const createFamily = async (req, res) => {
   try {
-    const { employee_id, name, relationship, created_by } = req.body;
-    const family = await familyService.createFamily({ employee_id, name, relationship, created_by });
+    const { employee_id, name, identifier, job, place_of_birth, date_of_birth, religion, is_life, is_divorced, relation_status, created_by } =
+      req.body;
+    const family = await familyService.createFamily({
+      employee_id,
+      name,
+      identifier,
+      job,
+      place_of_birth,
+      date_of_birth,
+      religion,
+      is_life,
+      is_divorced,
+      relation_status,
+      created_by,
+    });
     res.status(200).json({
       message: "success",
       data: family,
@@ -30,7 +43,7 @@ const createFamily = async (req, res) => {
 
 const updateFamily = async (req, res) => {
   const { id } = req.params;
-  const { name, relationship, updated_by } = req.body;
+  const { name, identifier, job, place_of_birth, date_of_birth, religion, is_life, is_divorced, relation_status, updated_by } = req.body;
   try {
     const familyFind = await familyService.showFamily(id);
     if (familyFind == null) {
@@ -38,7 +51,14 @@ const updateFamily = async (req, res) => {
     }
     const family = await familyService.updateFamily(familyFind, {
       name,
-      relationship,
+      identifier,
+      job,
+      place_of_birth,
+      date_of_birth,
+      religion,
+      is_life,
+      is_divorced,
+      relation_status,
       updated_by,
     });
     res.status(200).json({

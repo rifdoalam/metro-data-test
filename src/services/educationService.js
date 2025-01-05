@@ -1,9 +1,7 @@
 const { Education } = require("../models");
 
-const getEducationEmployee = async (where) => {
-  const educationData = await Education.findAll({
-    where: where,
-  });
+const showEducation = async (id) => {
+  const educationData = await Education.findByPk(id);
   return educationData;
 };
 const createEducation = async (data) => {
@@ -22,7 +20,7 @@ const deleteEducation = async (education) => {
 };
 
 module.exports = {
-  getEducationEmployee,
+  showEducation,
   createEducation,
   updateEducation,
   deleteEducation,

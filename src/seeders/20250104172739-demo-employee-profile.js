@@ -7,14 +7,22 @@ module.exports = {
       {
         employee_id: 1,
         place_of_birth: "Jakarta",
-        date_of_birth: new Date("2001-01-01"),
+        date_of_birth: "1997-05-02",
+        gender: "Laki-laki",
+        is_married: true,
+        prof_pict: "",
+        created_by: "admin",
+        updated_by: "admin",
+      },
+      {
+        employee_id: 2,
+        place_of_birth: "Sukabumi",
+        date_of_birth: "1996-05-02",
         gender: "Laki-laki",
         is_married: false,
         prof_pict: "",
-        created_by: "John Doe",
-        updated_by: "John Doe",
-        created_at: new Date(),
-        updated_at: new Date(),
+        created_by: "admin",
+        updated_by: "admin",
       },
     ]);
     /**

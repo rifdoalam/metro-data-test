@@ -8,13 +8,19 @@ module.exports = {
       [
         {
           employee_id: 1,
-          name: "Universitas XYZ",
+          name: "SMKN 7 Jakarta",
+          level: "Sma",
+          description: "Sekolah Menengah Atas",
+          created_by: "admin",
+          updated_by: "admin",
+        },
+        {
+          employee_id: 2,
+          name: "Universitas Negri Jakarta",
           level: "Strata 1",
-          description: "lorem ipsum dolor sit amet, consect",
-          created_by: "John Doe",
-          updated_by: "John Doe",
-          created_at: new Date(),
-          updated_at: new Date(),
+          description: "Sarjana",
+          created_by: "admin",
+          updated_by: "admin",
         },
       ],
       {}
