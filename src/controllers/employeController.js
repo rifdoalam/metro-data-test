@@ -82,4 +82,42 @@ const getDetailEmployee = async (req, res) => {
   }
 };
 
-module.exports = { createEmployee, getAllDataEmployee, getDetailEmployee, deleteEmployee, updateEmployee };
+const reportEmployee = async (req, res) => {
+  try {
+    const employeeData = await employeService.reportEmployee();
+    const formattedData = employeeData.map((employee) => {
+      const profile = employee.profile;
+      const age = profile?.date_of_birth ? `${new Date().getFullYear() - new Date(profile.date_of_birth).getFullYear()} Years Old` : null;
+
+      const familyData = employee.family.reduce(
+        (acc, family) => {
+          if (family.relation_status === "Istri") acc.wives += 1;
+          if (family.relation_status === "Anak") acc.children += 1;
+          return acc;
+        },
+        { wives: 0, children: 0 }
+      );
+      const familyInfo = familyData.wives === 0 && familyData.children === 0 ? "-" : `${familyData.wives} Istri & ${familyData.children} Anak`;
+
+      return {
+        employee_id: employee.id,
+        nik: employee.nik,
+        name: employee.name,
+        is_active: employee.is_active,
+        gender: profile?.gender || null,
+        age,
+        school_name: employee.education[0]?.name || null,
+        level: employee.education[0]?.level || null,
+        family_data: familyInfo,
+      };
+    });
+    res.status(200).json({
+      message: "success",
+      data: formattedData,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { createEmployee, getAllDataEmployee, getDetailEmployee, deleteEmployee, updateEmployee, reportEmployee };

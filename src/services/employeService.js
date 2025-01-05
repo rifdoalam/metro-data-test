@@ -54,4 +54,25 @@ const deleteEmployee = async (employee) => {
   return employee;
 };
 
-module.exports = { getAllDataEmployee, getDetailEmployee, createEmployee, deleteEmployee, updateEmployee };
+const reportEmployee = async () => {
+  const employeeData = await Employee.findAll({
+    attributes: ["id", "nik", "name", "is_active"],
+    include: [
+      {
+        model: Education,
+        as: "education",
+      },
+      {
+        model: EmployeeProfile,
+        as: "profile",
+      },
+      {
+        model: EmployeeFamily,
+        as: "family",
+      },
+    ],
+  });
+  return employeeData;
+};
+
+module.exports = { getAllDataEmployee, getDetailEmployee, createEmployee, deleteEmployee, updateEmployee, reportEmployee };
